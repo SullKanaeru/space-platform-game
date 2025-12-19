@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://c1vfo47wjb6bd"]
+[gd_scene load_steps=14 format=3 uid="uid://c1vfo47wjb6bd"]
 
 [ext_resource type="Texture2D" uid="uid://durr1lqou03b7" path="res://assets/images/Background/Terrain01.png" id="1_pdpul"]
 [ext_resource type="Texture2D" uid="uid://c85wmg8qa060" path="res://assets/images/Tilemap/Terrain (16x16).png" id="1_pdtm5"]
@@ -174,6 +174,18 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ote20")
 sources/4 = SubResource("TileSetAtlasSource_61w3m")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pdpul"]
+size = Vector2(106.00001, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8hd6v"]
+size = Vector2(274, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_045es"]
+size = Vector2(60.666668, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_omn1t"]
+size = Vector2(335.3333, 20)
+
 [node name="LevelRoot" type="Node2D"]
 scale = Vector2(3, 3)
 
@@ -187,33 +199,73 @@ expand_mode = 1
 [node name="Traps" type="Node2D" parent="."]
 
 [node name="Grinding" parent="Traps" instance=ExtResource("3_b3oru")]
-position = Vector2(245.33334, 160)
+position = Vector2(240, 112)
 scale = Vector2(0.20000002, 0.20000002)
 
 [node name="Grinding2" parent="Traps" instance=ExtResource("3_b3oru")]
-position = Vector2(320.00003, 160)
+position = Vector2(298.66666, 112)
 scale = Vector2(0.20000002, 0.20000002)
 
 [node name="Grinding3" parent="Traps" instance=ExtResource("3_b3oru")]
-position = Vector2(200, 178.66669)
+position = Vector2(197.33333, 125.33335)
 rotation = 4.712389
 scale = Vector2(0.20000002, 0.20000002)
 
 [node name="Grinding4" parent="Traps" instance=ExtResource("3_b3oru")]
-position = Vector2(362.66666, 176.00002)
+position = Vector2(346.66666, 122.66668)
 rotation = 1.5707964
 scale = Vector2(0.20000002, 0.20000002)
 
 [node name="Spike" parent="Traps" instance=ExtResource("2_61w3m")]
-position = Vector2(122.666664, 213.33334)
+position = Vector2(184, 189.33334)
 scale = Vector2(0.20000002, 0.20000002)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 texture_filter = 1
 position = Vector2(1.6666667, 0)
 scale = Vector2(0.5, 0.5)
-tile_map_data = PackedByteArray("AAAAABwABAAAAAAAAAACABwABAAAAAAAAAAEABwABAAAAAAAAAAGABwABAAAAAAAAAAQABwABAAAAAAAAAASABwABAAAAAAAAAAUABwABAAAAAAAAAAWABwABAAAAAAAAAAYABwABAAAAAAAAAAaABwABAAAAAAAAAAcABwABAAAAAAAAAAeABwABAAAAAAAAAAgABwABAAAAAAAAAAiABwABAAAAAAAAAAkABwABAAAAAAAAAAmABwABAAAAAAAAAAoABwABAAAAAAAAAAqABwABAAAAAAAAAAsABwABAAAAAAAAAAuABwABAAAAAAAAAAwABwABAAAAAAAAAAyABwABAAAAAAAAAA0ABwABAAAAAAAAAA0ABoABAAAAAAAAAA0ABgABAAAAAAAAAA0ABYABAAAAAAAAAA0ABQABAAAAAAAAAA0ABIABAAAAAAAAAA0ABAABAAAAAAAAAA0AA4ABAAAAAAAAAA0AAwABAAAAAAAAAA0AAoABAAAAAAAAAA0AAgABAAAAAAAAAA0AAYABAAAAAAAAAA0AAQABAAAAAAAAAA0AAIABAAAAAAAAAA0AAAABAAAAAAAAAAyAAAABAAAAAAAAAAwAAAABAAAAAAAAAAuAAAABAAAAAAAAAAsAAAABAAAAAAAAAAqAAAABAAAAAAAAAAoAAAABAAAAAAAAAAmAAAABAAAAAAAAAAkAAAABAAAAAAAAAAiAAAABAAAAAAAAAAgAAAABAAAAAAAAAAeAAAABAAAAAAAAAAcAAAABAAAAAAAAAAaAAAABAAAAAAAAAAYAAAABAAAAAAAAAAMAAAABAAAAAAAAAAKAAAABAAAAAAAAAAIAAAABAAAAAAAAAAGAAAABAAAAAAAAAAEAAAABAAAAAAAAAACAAAABAAAAAAAAAAAAAAABAAAAAAAAAAAAAIABAAAAAAAAAAAABoABAAAAAAAAAAAABgABAAAAAAAAAAAABYABAAAAAAAAAAAABQABAAAAAAAAAAAABIABAAAAAAAAAAAABAABAAAAAAAAAAAAA4ABAAAAAAAAAAAAAwABAAAAAAAAAAAAAoABAAAAAAAAAAAAAgABAAAAAAAAAAAAAYABAAAAAAAAAAAAAQABAAAAAAAAAAOAAAABAAAAAAAAAAOABwABAAAAAAAAAAaABUABAAAAAAAAAAcABUABAAAAAAAAAAeABUABAAAAAAAAAAgABUABAAAAAAAAAAiABUABAAAAAAAAAAkABUABAAAAAAAAAAmABUABAAAAAAAAAAoABUABAAAAAAAAAAqABUABAAAAAAAAAAQAAAABAAAAAAAAAA=")
 tile_set = SubResource("TileSet_2de3w")
 
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(53.333336, 202.66667)
+shape = SubResource("RectangleShape2D_pdpul")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(296, 208)
+shape = SubResource("RectangleShape2D_8hd6v")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(31, 29.333334)
+shape = SubResource("RectangleShape2D_045es")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(248.33334, 29.333334)
+shape = SubResource("RectangleShape2D_omn1t")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(80, 37.333336)
+polygon = PackedVector2Array(0, 0, 24, -2.6666667, 82.66667, 0, 61.333344, 10.666664, 29.333336, 24, 16, 24)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(37.333336, 192, 45.333336, 160, 56, 192)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(58.666668, 192, 80, 186.66667, 85.333336, 189.33334, 85.333336, 192)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(245.33334, 197.33334, 248, 189.33334, 258.6667, 186.66667, 258.6667, 178.66667, 272, 176, 280, 186.66667, 282.6667, 197.33334)
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(330.6667, 197.33334, 333.33334, 186.66667, 336, 184, 341.33334, 181.33334, 346.6667, 173.33334, 352, 168, 357.33334, 168, 373.33334, 165.33334, 376, 170.66667, 386.6667, 173.33334, 389.33334, 181.33334, 392, 197.33334)
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(205.33334, 120, 338.6667, 120, 338.6667, 125.333336, 312, 125.333336, 258.6667, 141.33334, 242.66667, 130.66667, 221.33334, 125.333336, 205.33334, 122.66667)
+
+[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(296, 37.333336, 312, 42.666668, 333.33334, 56, 341.33334, 56, 365.33334, 37.333336)
+
 [node name="Player" parent="." instance=ExtResource("2_b3oru")]
-position = Vector2(37.333336, 205.33334)
+position = Vector2(29.333336, 170.66667)
+scale = Vector2(0.10000001, 0.10000001)
