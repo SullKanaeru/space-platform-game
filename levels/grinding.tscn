@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://b1u3lm4c8kkaw"]
+
+[ext_resource type="Script" uid="uid://banp4cpwg07pa" path="res://scripts/grinding.gd" id="1_skdyk"]
+[ext_resource type="Texture2D" uid="uid://gxeqw58mk3dn" path="res://assets/images/Characters/spritesheet-enemies-double.png" id="1_vp4cm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skdyk"]
+atlas = ExtResource("1_vp4cm")
+region = Rect2(902, 387, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlqxo"]
+atlas = ExtResource("1_vp4cm")
+region = Rect2(0, 516, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sqdsx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skdyk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlqxo")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1opyk"]
+radius = 64.49806
+
+[node name="Grinding" type="Area2D"]
+scale = Vector2(0.2, 0.2)
+script = ExtResource("1_skdyk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_sqdsx")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1opyk")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
