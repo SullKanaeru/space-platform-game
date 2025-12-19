@@ -211,7 +211,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qlg0r"]
-size = Vector2(130.00003, 249.1667)
+size = Vector2(130.00003, 224.58337)
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.1, 0.1)
@@ -222,12 +222,12 @@ texture_filter = 1
 position = Vector2(0, 20)
 scale = Vector2(1, 0.9747024)
 sprite_frames = SubResource("SpriteFrames_t4otl")
-animation = &"damaged"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.28084126
+frame_progress = 0.3064985
 speed_scale = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 10)
-scale = Vector2(0.99999964, 0.99999964)
+position = Vector2(0, 22.291649)
+scale = Vector2(0.99999946, 0.99999946)
 shape = SubResource("RectangleShape2D_qlg0r")
