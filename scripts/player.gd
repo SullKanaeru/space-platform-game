@@ -69,9 +69,13 @@ func die() -> void:
 	var knockback_dir_y = -1 * gravity_direction 
 	velocity = Vector2(-200, 400 * knockback_dir_y)
 	
-	# 2. Kirim sinyal ke Main bahwa player mati SEBELUM pause
+	# Send signal to Main if the player is dead
 	await get_tree().create_timer(0.5).timeout
 	
 	# Pause game
 	get_tree().paused = true
 	player_has_died.emit() 
+
+# Handle game over when character exits screen
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	die()

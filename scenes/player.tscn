@@ -211,7 +211,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qlg0r"]
-size = Vector2(130.00003, 224.58337)
+size = Vector2(80.000046, 224.58337)
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.1, 0.1)
@@ -222,12 +222,17 @@ texture_filter = 1
 position = Vector2(0, 20)
 scale = Vector2(1, 0.9747024)
 sprite_frames = SubResource("SpriteFrames_t4otl")
-animation = &"idle"
+animation = &"jump"
 autoplay = "idle"
-frame_progress = 0.3064985
+frame_progress = 0.7174468
 speed_scale = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 22.291649)
-scale = Vector2(0.99999946, 0.99999946)
+position = Vector2(0, 22.291647)
+scale = Vector2(0.99999934, 0.99999934)
 shape = SubResource("RectangleShape2D_qlg0r")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-39.999996, -89.99999, 79.99999, 219.99997)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
