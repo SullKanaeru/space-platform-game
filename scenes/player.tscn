@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://bjlmikrv2rnd2"]
+[gd_scene load_steps=52 format=3 uid="uid://bjlmikrv2rnd2"]
 
 [ext_resource type="Script" uid="uid://e2g28tw7s7wo" path="res://scripts/player.gd" id="1_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://dxdymgyk1vh0" path="res://assets/images/Characters/die/01.png" id="2_cs1tg"]
@@ -46,6 +46,9 @@
 [ext_resource type="Texture2D" uid="uid://ch6uqsgd1eyvf" path="res://assets/images/Characters/run/03.png" id="37_cs1tg"]
 [ext_resource type="Texture2D" uid="uid://dvrsjkglx0y35" path="res://assets/images/Characters/run/04.png" id="38_2dvfe"]
 [ext_resource type="Texture2D" uid="uid://cn5fiqctdgqeb" path="res://assets/images/Characters/run/05.png" id="39_giy8y"]
+[ext_resource type="AudioStream" uid="uid://clsavw40kc1qv" path="res://assets/sounds/naik.wav" id="47_mx1m4"]
+[ext_resource type="AudioStream" uid="uid://bdk6b83et6h2b" path="res://assets/sounds/death.wav" id="48_4gjji"]
+[ext_resource type="AudioStream" uid="uid://wlgisd6fpp6w" path="res://assets/sounds/turun.wav" id="49_u2ulf"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t4otl"]
 animations = [{
@@ -147,7 +150,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"die",
-"speed": 1.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -222,9 +225,9 @@ texture_filter = 1
 position = Vector2(0, 20)
 scale = Vector2(1, 0.9747024)
 sprite_frames = SubResource("SpriteFrames_t4otl")
-animation = &"jump"
+animation = &"die"
 autoplay = "idle"
-frame_progress = 0.7174468
+frame_progress = 0.45329452
 speed_scale = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -234,5 +237,14 @@ shape = SubResource("RectangleShape2D_qlg0r")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 rect = Rect2(-39.999996, -89.99999, 79.99999, 219.99997)
+
+[node name="NaikSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("47_mx1m4")
+
+[node name="DieSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("48_4gjji")
+
+[node name="TurunSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("49_u2ulf")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
