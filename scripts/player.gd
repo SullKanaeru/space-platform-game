@@ -1,13 +1,16 @@
 extends CharacterBody2D
 
 const SPEED = 300.0
-const GRAVITY_SCALE = 3.0 
+const GRAVITY_SCALE = 2.5 
 
 var gravity_direction = 1
 var alive = true
 signal player_has_died
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var naik_sound: AudioStreamPlayer2D = $NaikSfx
+@onready var turun_sound: AudioStreamPlayer2D = $TurunSfx
+@onready var die_sound: AudioStreamPlayer2D = $DieSfx
 
 func _physics_process(delta: float) -> void:
 	# Gravitation logic
@@ -21,6 +24,10 @@ func _physics_process(delta: float) -> void:
 	# Controller to jump
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		flip_gravity()
+		if gravity_direction == -1:
+			naik_sound.play()
+		else:
+			turun_sound.play()
 
 	# Controller to move
 	var direction := Input.get_axis("left", "right")
@@ -36,7 +43,7 @@ func _physics_process(delta: float) -> void:
 func flip_gravity():
 	gravity_direction *= -1
 	up_direction = Vector2(0, -1) * gravity_direction
-	velocity.y = 0 
+	velocity.y = 0
 
 # Update animation after reversing gravity.
 func update_animation(direction):
@@ -70,6 +77,7 @@ func die() -> void:
 	velocity = Vector2(-200, 400 * knockback_dir_y)
 	
 	# Send signal to Main if the player is dead
+	die_sound.play()
 	await get_tree().create_timer(0.5).timeout
 	
 	# Pause game
