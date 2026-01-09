@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1u3lm4c8kkaw"]
+
+[ext_resource type="Script" uid="uid://banp4cpwg07pa" path="res://scripts/grinding.gd" id="1_skdyk"]
+[ext_resource type="Texture2D" uid="uid://d1t3qvgjsxlh0" path="res://assets/images/Traps/Sawblade01.png" id="2_skdyk"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sqdsx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_skdyk")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qlqxo"]
+size = Vector2(145.00005, 65)
+
+[node name="Grinding" type="Area2D"]
+scale = Vector2(0.2, 0.2)
+script = ExtResource("1_skdyk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_sqdsx")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.4999993, 7.4999986)
+scale = Vector2(0.99999964, 0.99999964)
+shape = SubResource("RectangleShape2D_qlqxo")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

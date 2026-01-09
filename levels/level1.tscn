@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://c1vfo47wjb6bd"]
 
 [ext_resource type="Texture2D" uid="uid://durr1lqou03b7" path="res://assets/images/Background/Terrain01.png" id="1_pdpul"]
-[ext_resource type="Texture2D" uid="uid://c85wmg8qa060" path="res://assets/images/Tilemap/Terrain (16x16).png" id="1_pdtm5"]
-[ext_resource type="PackedScene" uid="uid://caedtyjti4vpo" path="res://levels/spike.tscn" id="2_61w3m"]
+[ext_resource type="Texture2D" path="res://assets/images/Tilemap/Terrain (16x16).png" id="1_pdtm5"]
+[ext_resource type="PackedScene" uid="uid://caedtyjti4vpo" path="res://scenes/spike.tscn" id="2_61w3m"]
 [ext_resource type="PackedScene" uid="uid://bjlmikrv2rnd2" path="res://scenes/player.tscn" id="2_b3oru"]
-[ext_resource type="PackedScene" uid="uid://b1u3lm4c8kkaw" path="res://levels/grinding.tscn" id="3_b3oru"]
+[ext_resource type="PackedScene" uid="uid://b1u3lm4c8kkaw" path="res://scenes/grinding.tscn" id="3_b3oru"]
 [ext_resource type="Texture2D" uid="uid://d2q0dfd5mgk7t" path="res://assets/images/Characters/Block01.png" id="3_ua5ty"]
 [ext_resource type="PackedScene" uid="uid://dyv73kmsb12um" path="res://scenes/shard.tscn" id="7_8hd6v"]
 

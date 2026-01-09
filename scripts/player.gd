@@ -5,7 +5,6 @@ const GRAVITY_SCALE = 5
 
 var gravity_direction = 1
 var alive = true
-# Variabel baru agar player kebal saat masuk portal
 var is_entering_portal = false 
 
 signal player_has_died
@@ -16,33 +15,35 @@ signal player_has_died
 @onready var die_sound: AudioStreamPlayer2D = $DieSfx
 @onready var shard_counter_label = $ShardCounter
 
+func _ready() -> void:
+	# SOLUSI 1: Reset Engine dan State setiap kali player lahir kembali
+	Engine.time_scale = 1.0
+	alive = true
+	is_entering_portal = false
+	velocity = Vector2.ZERO
+	# Pastikan collision aktif kembali saat respawn
+	$CollisionShape2D.disabled = false 
+
 func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed("jump"): # Tekan Spasi untuk cek
-		print("--- CEK STATUS PLAYER ---")
-		print("Apakah Game Paused? ", get_tree().paused)
-		print("Process Mode Player (0=Inherit, 1=Pausable, 3=Always): ", process_mode)
-		print("Bisakah Player Memproses? ", can_process())
-		print("-------------------------")
+	# SOLUSI 2: Gunakan delta secara konsisten pada gravitasi
 	velocity += get_gravity() * gravity_direction * GRAVITY_SCALE * delta
 
 	if not alive:
+		# Saat mati, biarkan sisa momentum berjalan tanpa input
 		move_and_slide()
 		return 
 
 	if is_on_floor():
-		# Menggunakan action yang sudah didaftarkan (W atau Panah Atas)
 		if Input.is_action_just_pressed("go_up"): 
 			if gravity_direction == 1:
 				flip_gravity()
 				naik_sound.play()
 				
-		# Menggunakan action yang sudah didaftarkan (S atau Panah Bawah)
 		elif Input.is_action_just_pressed("go_down"):
 			if gravity_direction == -1:
 				flip_gravity()
 				turun_sound.play()
 				
-		# Logic Lompat (Spasi) tetap sama
 		elif Input.is_action_just_pressed("jump"):
 			flip_gravity()
 			if gravity_direction == -1:
@@ -54,9 +55,12 @@ func _physics_process(delta: float) -> void:
 	if direction:
 		velocity.x = direction * SPEED
 	else:
+		# SOLUSI 3: Gunakan move_toward agar pengereman tidak terpengaruh lag
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	update_animation(direction)
+	
+	# move_and_slide() di Godot 4 sudah otomatis menangani delta untuk posisi
 	move_and_slide()
 
 func flip_gravity():
@@ -84,49 +88,45 @@ func update_animation(direction):
 		animated_sprite.flip_v = false
 
 func die() -> void:
-	# Cek tambahan: Jika sedang masuk portal, JANGAN mati.
 	if not alive or is_entering_portal:
 		return
 
 	alive = false
 	animated_sprite.play("die")
+	
+	# Memberikan efek slow motion saat mati
 	Engine.time_scale = 0.5 
 
 	var knockback_dir_y = -1 * gravity_direction 
 	velocity = Vector2(-200, 400 * knockback_dir_y)
 	
 	die_sound.play()
-	await get_tree().create_timer(0.5).timeout
+	
+	# Gunakan timer non-paused agar tetap berjalan meski game nanti di-pause
+	var timer = get_tree().create_timer(0.5)
+	await timer.timeout
 	
 	player_has_died.emit() 
 	get_tree().paused = true
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	# Cek juga di sini agar tidak mati saat disedot keluar layar
 	if not is_entering_portal:
 		die()
 
-# --- FUNGSI BARU: MODE KEBAL SAAT MASUK PORTAL ---
 func enter_portal_state():
 	is_entering_portal = true
-	# Matikan collision agar tidak kena duri/musuh saat animasi berjalan
 	$CollisionShape2D.set_deferred("disabled", true)
 
-# --- FUNGSI MENAMPILKAN ANGKA SHARD ---
 func show_shard_number(number: int):
 	if not shard_counter_label:
 		return
 
 	shard_counter_label.text = str(number)
-	
-	# Posisi label (sesuaikan offsetnya)
 	shard_counter_label.position = Vector2(-150, -50) 
-	
 	shard_counter_label.modulate.a = 1.0 
 	shard_counter_label.show()
 	
 	var tween = create_tween()
 	tween.set_parallel(true) 
-	
 	tween.tween_property(shard_counter_label, "position", shard_counter_label.position + Vector2(0, -30), 1.0).set_trans(Tween.TRANS_SINE)
 	tween.tween_property(shard_counter_label, "modulate:a", 0.0, 1.0)

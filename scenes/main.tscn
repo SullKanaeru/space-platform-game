@@ -12,13 +12,15 @@ script = ExtResource("1_0wfyh")
 
 [node name="LevelRoot" parent="." instance=ExtResource("3_jyhfs")]
 
+[node name="GameOver" parent="." instance=ExtResource("3_sugp2")]
+process_mode = 0
+
+[node name="GameWin" parent="." instance=ExtResource("5_tbgi4")]
+process_mode = 0
+
 [node name="GameOverSound" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("4_jyhfs")
-
-[node name="GameWin" parent="." instance=ExtResource("5_tbgi4")]
-
-[node name="GameOver" parent="." instance=ExtResource("3_sugp2")]
 
 [node name="GameWinSound" type="AudioStreamPlayer" parent="."]
 process_mode = 3
