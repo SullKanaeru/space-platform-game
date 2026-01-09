@@ -36,7 +36,7 @@ polygon = PackedVector2Array(474, 67, 778, 71, 758, 60, 476, 55, 471, 63)
 polygon = PackedVector2Array(496, 273, 738, 279, 746, 289, 739, 312, 694, 311, 671, 321, 568, 320, 555, 311, 534, 307, 504, 307, 506, 286)
 
 [node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="CollisionGroup"]
-polygon = PackedVector2Array(201, 447, 526, 451, 534, 458, 485, 465, 479, 481, 459, 485, 447, 487, 429, 487, 411, 493, 397, 497, 377, 492, 357, 494, 317, 501, 277, 491)
+polygon = PackedVector2Array(199, 448, 526, 451, 534, 458, 485, 465, 429, 487, 411, 493, 397, 497, 377, 492, 357, 494, 317, 501)
 
 [node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="CollisionGroup"]
 polygon = PackedVector2Array(716, 479, 710, 467, 724, 459, 1055, 463, 1068, 470, 1058, 481, 979, 483, 951, 491, 897, 518, 855, 518, 778, 487, 769, 482, 764, 492, 769, 505, 763, 514, 755, 517, 745, 512, 733, 514, 728, 505, 726, 491, 729, 481)
@@ -45,13 +45,13 @@ polygon = PackedVector2Array(716, 479, 710, 467, 724, 459, 1055, 463, 1068, 470,
 polygon = PackedVector2Array(1024, 327, 1032, 320, 1079, 320, 1111, 308, 1277, 310, 1275, 347, 1247, 351, 1236, 366, 1234, 383, 1226, 385, 1167, 367, 1141, 359, 1069, 334, 1028, 333)
 
 [node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="CollisionGroup"]
-polygon = PackedVector2Array(2, 608, 67, 612, 130, 636, 213, 638, 215, 655, 202, 666, 68, 669, 2, 662)
+polygon = PackedVector2Array(2, 608, 67, 612, 140, 633, 213, 638, 215, 655, 202, 666, 68, 669, 2, 662)
 
 [node name="CollisionPolygon2D9" type="CollisionPolygon2D" parent="CollisionGroup"]
-polygon = PackedVector2Array(401, 655, 444, 637, 514, 631, 546, 618, 682, 621, 711, 632, 786, 637, 782, 655, 775, 657, 410, 667)
+polygon = PackedVector2Array(401, 655, 444, 637, 514, 631, 546, 618, 680, 621, 735, 635, 786, 637, 782, 655, 775, 657, 410, 667)
 
 [node name="CollisionPolygon2D10" type="CollisionPolygon2D" parent="CollisionGroup"]
-polygon = PackedVector2Array(1016, 600, 1174, 597, 1190, 593, 1217, 570, 1280, 569, 1278, 644, 1011, 650, 1018, 642, 1047, 640, 1047, 627, 1028, 627, 1007, 614, 1006, 600)
+polygon = PackedVector2Array(1016, 600, 1150, 600, 1219, 577, 1280, 569, 1278, 644, 1011, 650, 1018, 642, 1047, 640, 1047, 627, 1028, 627, 1007, 614, 1006, 600)
 
 [node name="CollisionPolygon2D11" type="CollisionPolygon2D" parent="CollisionGroup"]
 polygon = PackedVector2Array(925, 73, 1062, 67, 1176.3794, 88.81803, 1235, 100, 1249, 112, 1242, 122, 1236, 122, 1129, 115, 1088, 100, 1060, 102, 1052, 90, 1059, 82, 1046, 74, 1024, 76, 947, 82, 923, 77)

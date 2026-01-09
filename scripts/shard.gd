@@ -2,6 +2,8 @@ extends Area2D
 
 signal shard_collected
 
+@onready var collectSfx = $CollectSfx
+
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		# Pass 'body' to the collect method so it can read the variable
@@ -9,6 +11,7 @@ func _on_body_entered(body: Node2D) -> void:
 
 func collect_shard(player):
 	shard_collected.emit()
+	collectSfx.play()
 	# Turn off monitoring so it doesn't get triggered twice.
 	call_deferred("set_monitoring", false)
 	

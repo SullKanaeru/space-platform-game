@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://cfm7bkus2dnm3"]
+[gd_scene load_steps=41 format=3 uid="uid://cfm7bkus2dnm3"]
 
 [ext_resource type="Script" uid="uid://mq8io1ksy65m" path="res://scripts/portal.gd" id="1_13t6x"]
 [ext_resource type="Texture2D" uid="uid://dx151wv8a3ox8" path="res://assets/images/Portal/Activated Portal/PortalActive_0001.png" id="3_vuei2"]
@@ -37,6 +37,7 @@
 [ext_resource type="Texture2D" uid="uid://6drx4yv286uq" path="res://assets/images/Portal/Transition Portal/Transition_0010.png" id="35_qoprc"]
 [ext_resource type="Texture2D" uid="uid://brtr2gt6rcqic" path="res://assets/images/Portal/Transition Portal/Transition_0011.png" id="36_jsw1n"]
 [ext_resource type="Texture2D" uid="uid://ba168t12rq7yy" path="res://assets/images/Portal/Transition Portal/Transition_0012.png" id="37_8qgvh"]
+[ext_resource type="AudioStream" uid="uid://d2jtt7gw3qfoj" path="res://assets/sounds/sfx_portal open.wav" id="38_trrnx"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bi5mn"]
 animations = [{
@@ -181,5 +182,9 @@ frame_progress = 1.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 2.5)
 shape = SubResource("RectangleShape2D_7b6cc")
+
+[node name="UnlockSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("38_trrnx")
+volume_db = 10.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

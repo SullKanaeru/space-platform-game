@@ -6,7 +6,7 @@ extends Node2D
 
 var total_shards_needed = 0
 var current_shards = 0
-var target_volume = 0.0
+var target_volume = -10.0
 
 @onready var portal = $Portal
 @onready var shards_container = $Shards

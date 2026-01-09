@@ -240,9 +240,11 @@ rect = Rect2(-39.999996, -89.99999, 79.99999, 219.99997)
 
 [node name="NaikSfx" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("47_mx1m4")
+volume_db = -10.0
 
 [node name="DieSfx" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("48_4gjji")
+volume_db = -10.0
 
 [node name="TurunSfx" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("49_u2ulf")

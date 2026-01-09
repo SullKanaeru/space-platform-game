@@ -3,6 +3,7 @@ extends Area2D
 signal player_entered_portal
 
 @onready var anim = $AnimatedSprite2D
+@onready var unlock_sfx = $UnlockSfx
 var is_open = false
 
 func _ready():
@@ -14,6 +15,8 @@ func _ready():
 
 func unlock_portal():
 	anim.play("transition_portal")
+	if unlock_sfx:
+		unlock_sfx.play()
 
 func _on_animation_finished():
 	if anim.animation == "transition_portal":

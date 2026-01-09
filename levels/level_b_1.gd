@@ -16,7 +16,7 @@ func _ready():
 	if bgm:
 		bgm.volume_db = -80
 		bgm.play()
-		create_tween().tween_property(bgm, "volume_db", 0, 2.0)
+		create_tween().tween_property(bgm, "volume_db", -10.0, 2.0)
 	
 	# 2. Hitung Shard
 	if shards_container:
