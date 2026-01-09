@@ -26,7 +26,7 @@ texture = ExtResource("6_wawo4")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2jtsn"]
 texture = ExtResource("7_56v3a")
 
-[node name="Node2D" type="Node2D"]
+[node name="GameOver" type="Node2D"]
 process_mode = 2
 script = ExtResource("1_wqhvx")
 

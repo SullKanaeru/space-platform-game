@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cbl8lno4mluj8"]
+[gd_scene load_steps=8 format=3 uid="uid://cbl8lno4mluj8"]
 
 [ext_resource type="Texture2D" uid="uid://mg47vuok7gvy" path="res://assets/images/Background/stg_first_A1.jpg" id="1_5j8fm"]
 [ext_resource type="Script" uid="uid://bl4kaegd7vlyc" path="res://levels/level_a_1.gd" id="1_8uao6"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dyv73kmsb12um" path="res://scenes/shard.tscn" id="3_qg45q"]
 [ext_resource type="PackedScene" uid="uid://cfm7bkus2dnm3" path="res://levels/portal.tscn" id="4_g54t4"]
 [ext_resource type="AudioStream" uid="uid://bpn7qw6tgqwjv" path="res://assets/sounds/BGM_Level.wav" id="6_fnjst"]
+[ext_resource type="PackedScene" uid="uid://cc3e5e7tcshss" path="res://scenes/game_tutorial.tscn" id="7_cl0mf"]
 
 [node name="LevelRoot" type="Node2D"]
 script = ExtResource("1_8uao6")
@@ -16,9 +17,6 @@ offset_left = 2.0
 offset_right = 1282.0
 offset_bottom = 720.0
 texture = ExtResource("1_5j8fm")
-
-[node name="Player" parent="." instance=ExtResource("2_h0mtb")]
-position = Vector2(228, 549)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -36,7 +34,7 @@ polygon = PackedVector2Array(380, 570, 371, 590, 649, 586, 650, 565)
 polygon = PackedVector2Array(742, 531, 741, 543, 828, 543, 833, 528)
 
 [node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PackedVector2Array(1032, 616, 929, 613, 928, 620, 935, 626, 1039, 625, 1040, 638, 1046, 650, 1218, 650, 1223, 638, 1219, 634, 1068, 630)
+polygon = PackedVector2Array(1012, 615, 929, 613, 928, 620, 935, 626, 1039, 625, 1040, 638, 1046, 650, 1218, 650, 1223, 638, 1219, 634, 1070, 631)
 
 [node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(187, 66, 189, 89, 313, 97, 299, 160, 302, 173, 444, 174, 461, 162, 458, 147, 310, 138, 329, 66)
@@ -63,6 +61,12 @@ position = Vector2(783.00006, 507)
 position = Vector2(1180, 100.00001)
 rotation = -3.1415925
 
+[node name="Player" parent="." instance=ExtResource("2_h0mtb")]
+position = Vector2(228, 549)
+
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
 stream = ExtResource("6_fnjst")
 autoplay = true
+
+[node name="GameTutorial" parent="." instance=ExtResource("7_cl0mf")]

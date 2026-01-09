@@ -26,18 +26,18 @@ func _on_body_entered(body: Node2D):
 		# Panggil fungsi animasi transisi
 		_start_portal_sequence(body)
 
-# Fungsi baru untuk menangani logika "disedot"
+# Fungsi untuk menangani logika "disedot"
 func _start_portal_sequence(player):
 	print("Player masuk portal! Memulai sekuens...")
 	
-	# 1. Matikan kontrol Player
-	# Kita stop fungsi _physics_process di script player agar dia tidak bisa gerak/loncat lagi
+	# 1. Matikan kontrol Player (Input mati)
 	player.set_physics_process(false)
 	
-	# Opsional: Matikan collision shape player biar aman dari gangguan luar saat animasi
-	# player.find_child("CollisionShape2D").call_deferred("set_disabled", true)
+	# 2. TAMBAHAN PENTING: Aktifkan mode kebal di Player
+	if player.has_method("enter_portal_state"):
+		player.enter_portal_state()
 	
-	# 2. Buat Tween untuk efek visual "Masuk Portal"
+	# 3. Buat Tween untuk efek visual "Masuk Portal"
 	var tween = create_tween()
 	tween.set_parallel(true) # Jalankan animasi secara bersamaan
 	
@@ -47,17 +47,17 @@ func _start_portal_sequence(player):
 	# B. Kecilkan player jadi 0 (seperti menghilang ke dalam)
 	tween.tween_property(player, "scale", Vector2.ZERO, 1.0)
 	
-	# C. Putar player (opsional, biar keren kayak disedot lubang hitam)
+	# C. Putar player
 	tween.tween_property(player, "rotation_degrees", 360.0, 1.0)
 	
 	# D. Fade out (transparan)
 	tween.tween_property(player, "modulate:a", 0.0, 1.0)
 	
-	# 3. Tunggu animasi selesai
+	# 4. Tunggu animasi selesai
 	await tween.finished
 	
-	# 4. Tambahan Delay sesuai request (misal 0.5 detik hening sejenak sebelum menu muncul)
+	# 5. Tambahan Delay (hening sejenak)
 	await get_tree().create_timer(0.5).timeout
 	
-	# 5. Baru lapor ke Level (yang akhirnya akan pause game)
+	# 6. Lapor ke Level -> Main untuk memunculkan Win Screen
 	player_entered_portal.emit()

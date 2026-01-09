@@ -70,7 +70,7 @@ func start_bgm_fade_in():
 func stop_bgm_fade_out():
 	var tween = create_tween()
 	# Turunkan 'volume_db' ke -80 selama 2 detik
-	tween.tween_property(bgm, "volume_db", -80.0, 2.0)
+	tween.tween_property(bgm, "volume_db", -80.0, 0.5)
 	
 	# Opsional: Matikan player sepenuhnya setelah fade out selesai
 	tween.tween_callback(bgm.stop)

@@ -5,6 +5,9 @@ const GRAVITY_SCALE = 5
 
 var gravity_direction = 1
 var alive = true
+# Variabel baru agar player kebal saat masuk portal
+var is_entering_portal = false 
+
 signal player_has_died
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -14,6 +17,12 @@ signal player_has_died
 @onready var shard_counter_label = $ShardCounter
 
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("jump"): # Tekan Spasi untuk cek
+		print("--- CEK STATUS PLAYER ---")
+		print("Apakah Game Paused? ", get_tree().paused)
+		print("Process Mode Player (0=Inherit, 1=Pausable, 3=Always): ", process_mode)
+		print("Bisakah Player Memproses? ", can_process())
+		print("-------------------------")
 	velocity += get_gravity() * gravity_direction * GRAVITY_SCALE * delta
 
 	if not alive:
@@ -21,14 +30,19 @@ func _physics_process(delta: float) -> void:
 		return 
 
 	if is_on_floor():
-		if Input.is_action_just_pressed("ui_up"):
+		# Menggunakan action yang sudah didaftarkan (W atau Panah Atas)
+		if Input.is_action_just_pressed("go_up"): 
 			if gravity_direction == 1:
 				flip_gravity()
 				naik_sound.play()
-		elif Input.is_action_just_pressed("ui_down"):
+				
+		# Menggunakan action yang sudah didaftarkan (S atau Panah Bawah)
+		elif Input.is_action_just_pressed("go_down"):
 			if gravity_direction == -1:
 				flip_gravity()
 				turun_sound.play()
+				
+		# Logic Lompat (Spasi) tetap sama
 		elif Input.is_action_just_pressed("jump"):
 			flip_gravity()
 			if gravity_direction == -1:
@@ -70,7 +84,8 @@ func update_animation(direction):
 		animated_sprite.flip_v = false
 
 func die() -> void:
-	if not alive:
+	# Cek tambahan: Jika sedang masuk portal, JANGAN mati.
+	if not alive or is_entering_portal:
 		return
 
 	alive = false
@@ -87,29 +102,31 @@ func die() -> void:
 	get_tree().paused = true
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	die()
+	# Cek juga di sini agar tidak mati saat disedot keluar layar
+	if not is_entering_portal:
+		die()
 
-# --- FUNGSI BARU: MENAMPILKAN ANGKA SHARD ---
+# --- FUNGSI BARU: MODE KEBAL SAAT MASUK PORTAL ---
+func enter_portal_state():
+	is_entering_portal = true
+	# Matikan collision agar tidak kena duri/musuh saat animasi berjalan
+	$CollisionShape2D.set_deferred("disabled", true)
+
+# --- FUNGSI MENAMPILKAN ANGKA SHARD ---
 func show_shard_number(number: int):
 	if not shard_counter_label:
 		return
 
-	# 1. Set teks (1, 2, atau 3)
 	shard_counter_label.text = str(number)
 	
-	# 2. Reset posisi (offset dari kepala player) dan tampilkan
-	# UBAH DISINI: Ganti 10 menjadi -40 agar muncul di KIRI
+	# Posisi label (sesuaikan offsetnya)
 	shard_counter_label.position = Vector2(-150, -50) 
 	
 	shard_counter_label.modulate.a = 1.0 
 	shard_counter_label.show()
 	
-	# 3. Animasi Tween (Naik ke atas + Memudar)
 	var tween = create_tween()
 	tween.set_parallel(true) 
 	
-	# Bergerak naik sedikit
 	tween.tween_property(shard_counter_label, "position", shard_counter_label.position + Vector2(0, -30), 1.0).set_trans(Tween.TRANS_SINE)
-	
-	# Menghilang pelan-pelan
 	tween.tween_property(shard_counter_label, "modulate:a", 0.0, 1.0)
