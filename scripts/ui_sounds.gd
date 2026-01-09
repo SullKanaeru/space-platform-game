@@ -23,7 +23,7 @@ func install_sounds(node: Node) -> void:
 	for i in node.get_children():
 		if i is TextureButton:
 			i.mouse_entered.connect( func(): ui_sfx_play(&"sfx_menu_hover"))
-			i.pressed.connect( func(): ui_sfx_play(&"SFX_menu_accept"))	
+			i.pressed.connect( func(): ui_sfx_play(&"SFX_menu_accept"))
 
 		install_sounds(i)
 

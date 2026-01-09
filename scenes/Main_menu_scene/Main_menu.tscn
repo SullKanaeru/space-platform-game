@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bhd67ilsrqkq2"]
+[gd_scene load_steps=8 format=3 uid="uid://bhd67ilsrqkq2"]
 
 [ext_resource type="PackedScene" uid="uid://de31bimraf8bi" path="res://scenes/Main_menu_scene/ui_sounds.tscn" id="1_xsdyf"]
 [ext_resource type="Texture2D" uid="uid://bnyn5ghc7tnfr" path="res://assets/Main_Menu/play.png" id="2_ibklr"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://1nrdtlb6136c" path="res://assets/Main_Menu/play pressed.png" id="3_yhevq"]
 [ext_resource type="Texture2D" uid="uid://daomm8go2eulb" path="res://assets/Main_Menu/exit.png" id="4_bnhwh"]
 [ext_resource type="Texture2D" uid="uid://ckc4dpouedfna" path="res://assets/Main_Menu/exit pressed.png" id="5_un4cf"]
-[ext_resource type="PackedScene" uid="uid://bdaudgx08y12y" path="res://scenes/Main_menu_scene/color_rect.tscn" id="8_bnhwh"]
 
 [node name="MainMenu" type="Node2D"]
 
@@ -42,12 +41,5 @@ texture_normal = ExtResource("4_bnhwh")
 texture_pressed = ExtResource("5_un4cf")
 texture_hover = ExtResource("5_un4cf")
 
-[node name="ColorRect" parent="." instance=ExtResource("8_bnhwh")]
-visible = false
-
-[node name="fade_timer" type="Timer" parent="ColorRect"]
-wait_time = 1.2999999999999998
-
 [connection signal="pressed" from="UI_Button/Play" to="UI_Button" method="_on_play_pressed"]
 [connection signal="pressed" from="UI_Button/Exit" to="UI_Button" method="_on_exit_pressed"]
-[connection signal="timeout" from="ColorRect/fade_timer" to="UI_Button" method="_on_fade_timer_timeout"]
