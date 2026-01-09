@@ -247,4 +247,18 @@ stream = ExtResource("48_4gjji")
 [node name="TurunSfx" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("49_u2ulf")
 
+[node name="ShardCounter" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+offset_left = -223.33331
+offset_top = -103.33333
+offset_right = -137.33331
+offset_bottom = 101.66667
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 150
+text = "1"
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

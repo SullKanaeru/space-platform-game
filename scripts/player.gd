@@ -11,25 +11,31 @@ signal player_has_died
 @onready var naik_sound: AudioStreamPlayer2D = $NaikSfx
 @onready var turun_sound: AudioStreamPlayer2D = $TurunSfx
 @onready var die_sound: AudioStreamPlayer2D = $DieSfx
+@onready var shard_counter_label = $ShardCounter
 
 func _physics_process(delta: float) -> void:
-	# Gravitation logic
 	velocity += get_gravity() * gravity_direction * GRAVITY_SCALE * delta
 
-	# Character die logic
 	if not alive:
-		move_and_slide() # Knockback effect
+		move_and_slide()
 		return 
 
-	# Controller to jump
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		flip_gravity()
-		if gravity_direction == -1:
-			naik_sound.play()
-		else:
-			turun_sound.play()
-
-	# Controller to move
+	if is_on_floor():
+		if Input.is_action_just_pressed("ui_up"):
+			if gravity_direction == 1:
+				flip_gravity()
+				naik_sound.play()
+		elif Input.is_action_just_pressed("ui_down"):
+			if gravity_direction == -1:
+				flip_gravity()
+				turun_sound.play()
+		elif Input.is_action_just_pressed("jump"):
+			flip_gravity()
+			if gravity_direction == -1:
+				naik_sound.play()
+			else:
+				turun_sound.play()
+	
 	var direction := Input.get_axis("left", "right")
 	if direction:
 		velocity.x = direction * SPEED
@@ -39,13 +45,11 @@ func _physics_process(delta: float) -> void:
 	update_animation(direction)
 	move_and_slide()
 
-# Reversing the gravity
 func flip_gravity():
 	gravity_direction *= -1
 	up_direction = Vector2(0, -1) * gravity_direction
 	velocity.y = 0
 
-# Update animation after reversing gravity.
 func update_animation(direction):
 	if not is_on_floor():
 		animated_sprite.play("jump")
@@ -76,14 +80,36 @@ func die() -> void:
 	var knockback_dir_y = -1 * gravity_direction 
 	velocity = Vector2(-200, 400 * knockback_dir_y)
 	
-	# Send signal to Main if the player is dead
 	die_sound.play()
 	await get_tree().create_timer(0.5).timeout
 	
-	# Pause game
-	get_tree().paused = true
 	player_has_died.emit() 
+	get_tree().paused = true
 
-# Handle game over when character exits screen
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	die()
+
+# --- FUNGSI BARU: MENAMPILKAN ANGKA SHARD ---
+func show_shard_number(number: int):
+	if not shard_counter_label:
+		return
+
+	# 1. Set teks (1, 2, atau 3)
+	shard_counter_label.text = str(number)
+	
+	# 2. Reset posisi (offset dari kepala player) dan tampilkan
+	# UBAH DISINI: Ganti 10 menjadi -40 agar muncul di KIRI
+	shard_counter_label.position = Vector2(-150, -50) 
+	
+	shard_counter_label.modulate.a = 1.0 
+	shard_counter_label.show()
+	
+	# 3. Animasi Tween (Naik ke atas + Memudar)
+	var tween = create_tween()
+	tween.set_parallel(true) 
+	
+	# Bergerak naik sedikit
+	tween.tween_property(shard_counter_label, "position", shard_counter_label.position + Vector2(0, -30), 1.0).set_trans(Tween.TRANS_SINE)
+	
+	# Menghilang pelan-pelan
+	tween.tween_property(shard_counter_label, "modulate:a", 0.0, 1.0)

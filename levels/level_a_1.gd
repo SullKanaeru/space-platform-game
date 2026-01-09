@@ -6,7 +6,8 @@ var current_shards = 0
 
 # Fetch references
 @onready var portal = $Portal 
-@onready var shards_container = $Shards 
+@onready var shards_container = $Shards
+@onready var player = $Player
 
 @onready var bgm = $AudioStreamPlayer2D
 
@@ -34,7 +35,12 @@ func _on_shard_collected():
 	current_shards += 1
 	print("Shard terkumpul: ", current_shards)
 	
-	# Check if it is enough
+	# --- LOGIKA BARU ---
+	# Panggil fungsi di player untuk memunculkan angka
+	if player and player.has_method("show_shard_number"):
+		player.show_shard_number(current_shards)
+	# -------------------
+
 	if current_shards >= total_shards_needed:
 		open_the_portal()
 
