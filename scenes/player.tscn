@@ -249,7 +249,6 @@ stream = ExtResource("49_u2ulf")
 
 [node name="ShardCounter" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0)
-anchors_preset = -1
 offset_left = -223.33331
 offset_top = -103.33333
 offset_right = -137.33331
