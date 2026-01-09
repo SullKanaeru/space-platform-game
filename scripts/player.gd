@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
-const GRAVITY_SCALE = 2.5 
+const SPEED = 200.0
+const GRAVITY_SCALE = 5
 
 var gravity_direction = 1
 var alive = true
