@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c1vfo47wjb6bd"]
+[gd_scene load_steps=11 format=3 uid="uid://c1vfo47wjb6bd"]
 
 [ext_resource type="Texture2D" uid="uid://durr1lqou03b7" path="res://assets/images/Background/Terrain01.png" id="1_pdpul"]
 [ext_resource type="Texture2D" uid="uid://c85wmg8qa060" path="res://assets/images/Tilemap/Terrain (16x16).png" id="1_pdtm5"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bjlmikrv2rnd2" path="res://scenes/player.tscn" id="2_b3oru"]
 [ext_resource type="PackedScene" uid="uid://b1u3lm4c8kkaw" path="res://levels/grinding.tscn" id="3_b3oru"]
 [ext_resource type="Texture2D" uid="uid://d2q0dfd5mgk7t" path="res://assets/images/Characters/Block01.png" id="3_ua5ty"]
+[ext_resource type="PackedScene" uid="uid://dyv73kmsb12um" path="res://scenes/shard.tscn" id="7_8hd6v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ote20"]
 texture = ExtResource("1_pdtm5")
@@ -174,12 +175,12 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ote20")
 sources/4 = SubResource("TileSetAtlasSource_61w3m")
 
-[node name="LevelRoot" type="Node2D"]
+[node name="LevelRoot2" type="Node2D"]
 scale = Vector2(3, 3)
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 1
-offset_right = 434.6667
+offset_right = 426.6667
 offset_bottom = 240.0
 texture = ExtResource("1_pdpul")
 expand_mode = 1
@@ -220,7 +221,7 @@ tile_set = SubResource("TileSet_2de3w")
 polygon = PackedVector2Array(0, 194.66667, 16.333334, 194.66667, 27.666668, 190.66667, 31, 190.33334, 38, 192.66667, 46, 160.66667, 55.333336, 192.66667, 59.666668, 192.66667, 67, 189, 71, 188.33334, 76, 187, 80.333336, 187, 83, 188, 94, 195, 98.66667, 196, 103.333336, 198.66667, 106.66667, 202.66667, 106.66667, 213.33334, 0, 213.33334)
 
 [node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PackedVector2Array(330.6667, 197.33334, 333.33334, 189.33334, 341.33334, 181.33334, 357.33334, 168, 370.6667, 168, 376, 170.66667, 386.6667, 173.33334, 389.33334, 181.33334, 392, 197.33334, 397.33334, 202, 434.6667, 202.66667, 434.6667, 221.33334, 157.33334, 221.33334, 162.66667, 216, 162.66667, 213.33334, 162.66667, 205.33334, 162.66667, 202.66667, 169.38126, 202.05664, 174.29317, 199.52782, 178.66667, 197.33334, 245.33334, 197.33334, 248, 194.66667, 248, 189.33334, 258.6667, 189.33334, 261.33334, 181.33334, 274.6667, 178.66667, 284.33334, 197.33334)
+polygon = PackedVector2Array(330.6667, 197.33334, 333.33334, 189.33334, 341.33334, 181.33334, 357.33334, 168, 370.6667, 168, 376, 170.66667, 386.6667, 173.33334, 389.33334, 181.33334, 392, 197.33334, 397.33334, 202, 426.6667, 202.66667, 426, 221.66667, 157.33334, 221.33334, 162.66667, 216, 162.66667, 213.33334, 162.66667, 205.33334, 162.66667, 202.66667, 169.38126, 202.05664, 174.29317, 199.52782, 178.66667, 197.33334, 245.33334, 197.33334, 248, 194.66667, 248, 189.33334, 258.6667, 189.33334, 261.33334, 181.33334, 274.6667, 178.66667, 284.33334, 197.33334)
 
 [node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(205.33334, 120, 261.33334, 120, 266.6667, 117.333336, 270.7358, 117.484055, 274.6667, 114.66667, 277.40067, 114.894516, 280, 117.333336, 280, 120, 338.6667, 120, 338.6667, 125.333336, 312, 125.333336, 258.6667, 141.33334, 242.66667, 130.66667, 221.33334, 125.333336, 205.33334, 122.66667)
@@ -234,3 +235,8 @@ polygon = PackedVector2Array(80, 32, 85.333336, 37.333336, 96, 45.333336, 96, 61
 [node name="Player" parent="." instance=ExtResource("2_b3oru")]
 position = Vector2(29.333336, 170.66667)
 scale = Vector2(0.10000001, 0.10000001)
+
+[node name="Shard" type="Node2D" parent="."]
+
+[node name="Shard" parent="Shard" instance=ExtResource("7_8hd6v")]
+position = Vector2(269.33334, 104)

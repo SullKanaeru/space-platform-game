@@ -1,17 +1,18 @@
-[gd_scene load_steps=14 format=3 uid="uid://dyv73kmsb12um"]
+[gd_scene load_steps=15 format=3 uid="uid://dyv73kmsb12um"]
 
-[ext_resource type="Texture2D" uid="uid://cbvueb8w2k2qr" path="res://assets/images/shards/Shards_0001.png" id="1_n0aau"]
-[ext_resource type="Texture2D" uid="uid://nq2ihlavsv0y" path="res://assets/images/shards/Shards_0002.png" id="2_rr10k"]
-[ext_resource type="Texture2D" uid="uid://h18pfjehl133" path="res://assets/images/shards/Shards_0003.png" id="3_7nxlc"]
-[ext_resource type="Texture2D" uid="uid://cppcoo2uhlh8i" path="res://assets/images/shards/Shards_0004.png" id="4_cd2ln"]
-[ext_resource type="Texture2D" uid="uid://byiw0pww5l4cy" path="res://assets/images/shards/Shards_0005.png" id="5_y5amd"]
-[ext_resource type="Texture2D" uid="uid://ve7od1x188lj" path="res://assets/images/shards/Shards_0006.png" id="6_ebmfu"]
-[ext_resource type="Texture2D" uid="uid://dklfnmg6wmqnh" path="res://assets/images/shards/Shards_0007.png" id="7_pxte5"]
-[ext_resource type="Texture2D" uid="uid://ijvprki5n6wd" path="res://assets/images/shards/Shards_0008.png" id="8_2blxk"]
-[ext_resource type="Texture2D" uid="uid://cp30v5mwnuiku" path="res://assets/images/shards/Shards_0009.png" id="9_vksif"]
-[ext_resource type="Texture2D" uid="uid://cmlgq4c6eudt0" path="res://assets/images/shards/Shards_0010.png" id="10_0d5m1"]
-[ext_resource type="Texture2D" uid="uid://n342lu3e77i" path="res://assets/images/shards/Shards_0011.png" id="11_kiv0w"]
-[ext_resource type="Texture2D" uid="uid://1hp5mf7s0idv" path="res://assets/images/shards/Shards_0012.png" id="12_0cg42"]
+[ext_resource type="Texture2D" uid="uid://dblg5umtlpvwj" path="res://assets/images/shards/Shards_0001.png" id="1_n0aau"]
+[ext_resource type="Script" uid="uid://blcgrdsy3de3p" path="res://scenes/shard.gd" id="1_rr10k"]
+[ext_resource type="Texture2D" uid="uid://c4wjmfqwqjir4" path="res://assets/images/shards/Shards_0002.png" id="2_rr10k"]
+[ext_resource type="Texture2D" uid="uid://dwvakyntcr6l8" path="res://assets/images/shards/Shards_0003.png" id="3_7nxlc"]
+[ext_resource type="Texture2D" uid="uid://cheiuo2te540x" path="res://assets/images/shards/Shards_0004.png" id="4_cd2ln"]
+[ext_resource type="Texture2D" uid="uid://bunb4523yx5k2" path="res://assets/images/shards/Shards_0005.png" id="5_y5amd"]
+[ext_resource type="Texture2D" uid="uid://dfrwnxq73xpvu" path="res://assets/images/shards/Shards_0006.png" id="6_ebmfu"]
+[ext_resource type="Texture2D" uid="uid://bd58pwkc543i4" path="res://assets/images/shards/Shards_0007.png" id="7_pxte5"]
+[ext_resource type="Texture2D" uid="uid://oc4gegm4oqlq" path="res://assets/images/shards/Shards_0008.png" id="8_2blxk"]
+[ext_resource type="Texture2D" uid="uid://pwhdj6mcjdb4" path="res://assets/images/shards/Shards_0009.png" id="9_vksif"]
+[ext_resource type="Texture2D" uid="uid://buevlaayltii2" path="res://assets/images/shards/Shards_0010.png" id="10_0d5m1"]
+[ext_resource type="Texture2D" uid="uid://dp2hceddh246s" path="res://assets/images/shards/Shards_0011.png" id="11_kiv0w"]
+[ext_resource type="Texture2D" uid="uid://cqtf32g7h37rt" path="res://assets/images/shards/Shards_0012.png" id="12_0cg42"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0n1k2"]
 animations = [{
@@ -58,10 +59,15 @@ animations = [{
 }]
 
 [node name="Shard" type="Area2D"]
+scale = Vector2(0.3, 0.3)
+script = ExtResource("1_rr10k")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0n1k2")
-frame_progress = 0.10976688
+autoplay = "default"
+frame_progress = 0.49914628
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-4, -89, -32, -79, -38, -79, -40.88507, -73.550446, -42, -70, -49, -58, -46, -28, -40, -10, -28, -1, -31, 6, -27, 14, -20, 15, -15, 19, -14, 29, -13, 41, -18, 42, -18, 48, -21, 65, -29, 72, -27, 76, -21, 72, -11, 82, -11, 87, 2, 97, 27, 89, 25, 60, 34, 46, 37, 19, 37, 11, 45, 3, 58, -29, 64, -44, 54, -72, 23, -82)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

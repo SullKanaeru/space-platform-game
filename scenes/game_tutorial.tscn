@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cc3e5e7tcshss"]
+
+[ext_resource type="Script" uid="uid://cbnu6q85gf1ha" path="res://scripts/game_tutorial.gd" id="1_r4yly"]
+[ext_resource type="Texture2D" uid="uid://criq5o5ybf6h" path="res://assets/images/Game Tutorial/Bars.png" id="1_tyum3"]
+[ext_resource type="Texture2D" uid="uid://bq1uminyashhi" path="res://assets/images/Game Tutorial/Intro.png" id="2_r4yly"]
+[ext_resource type="Texture2D" uid="uid://dkjdubgd5drkd" path="res://assets/images/Game Tutorial/Subtitle.png" id="3_5fc14"]
+
+[node name="GameTutorial" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_r4yly")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(640, 320)
+scale = Vector2(0.8320002, 0.83199996)
+texture = ExtResource("1_tyum3")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(208, 200)
+scale = Vector2(0.66666657, 0.6666667)
+texture = ExtResource("2_r4yly")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(160, 288)
+scale = Vector2(0.7333333, 0.73333335)
+texture = ExtResource("3_5fc14")
+centered = false
