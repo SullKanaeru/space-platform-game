@@ -1,49 +1,48 @@
 [gd_scene load_steps=8 format=3 uid="uid://cbl8lno4mluj8"]
 
+[ext_resource type="Texture2D" uid="uid://mg47vuok7gvy" path="res://assets/images/Background/stg_first_A1.jpg" id="1_5j8fm"]
 [ext_resource type="Script" uid="uid://bl4kaegd7vlyc" path="res://levels/level_a_1.gd" id="1_8uao6"]
-[ext_resource type="Texture2D" uid="uid://fysh52nkro8" path="res://assets/images/Background/stg_first_A1_Rev2.png" id="2_cl0mf"]
 [ext_resource type="PackedScene" uid="uid://bjlmikrv2rnd2" path="res://scenes/player.tscn" id="2_h0mtb"]
 [ext_resource type="PackedScene" uid="uid://dyv73kmsb12um" path="res://scenes/shard.tscn" id="3_qg45q"]
-[ext_resource type="PackedScene" uid="uid://cfm7bkus2dnm3" path="res://scenes/portal.tscn" id="4_g54t4"]
+[ext_resource type="PackedScene" uid="uid://cfm7bkus2dnm3" path="res://levels/portal.tscn" id="4_g54t4"]
 [ext_resource type="AudioStream" uid="uid://bpn7qw6tgqwjv" path="res://assets/sounds/BGM_Level.wav" id="6_fnjst"]
 [ext_resource type="PackedScene" uid="uid://cc3e5e7tcshss" path="res://scenes/game_tutorial.tscn" id="7_cl0mf"]
 
 [node name="LevelRoot" type="Node2D"]
 script = ExtResource("1_8uao6")
-next_level_scene = "uid://r8od2kquq6sd"
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 1
 offset_left = 2.0
 offset_right = 1282.0
 offset_bottom = 720.0
-texture = ExtResource("2_cl0mf")
+texture = ExtResource("1_5j8fm")
 
-[node name="CollisionGroup" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CollisionGroup"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(16, 152, 88, 152, 80, 168, 16, 168)
 
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="CollisionGroup"]
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
 position = Vector2(16, 424)
 polygon = PackedVector2Array(9, 162, 137, 163, 180, 174, 274, 180, 295, 191, 286, 203, 166, 203, 144, 184, 8, 184)
 
-[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="CollisionGroup"]
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(380, 570, 371, 590, 649, 586, 650, 565)
 
-[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="CollisionGroup"]
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(742, 531, 741, 543, 828, 543, 833, 528)
 
-[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="CollisionGroup"]
+[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(1012, 615, 929, 613, 928, 620, 935, 626, 1039, 625, 1040, 638, 1046, 650, 1218, 650, 1223, 638, 1219, 634, 1070, 631)
 
-[node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="CollisionGroup"]
+[node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(187, 66, 189, 89, 313, 97, 299, 160, 302, 173, 444, 174, 461, 162, 458, 147, 310, 138, 329, 66)
 
-[node name="CollisionPolygon2D11" type="CollisionPolygon2D" parent="CollisionGroup"]
+[node name="CollisionPolygon2D11" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(723, 80, 713, 124, 630, 126, 633, 138, 719, 136, 729, 96, 904, 91, 900, 84, 913, 71)
 
-[node name="CollisionPolygon2D13" type="CollisionPolygon2D" parent="CollisionGroup"]
+[node name="CollisionPolygon2D13" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(1095, 50, 1087, 64, 1085, 70, 1077, 96, 1031, 96, 1031, 107, 1078, 105, 1080, 94, 1086, 92, 1086, 88, 1092, 85, 1091, 76, 1099.746, 71.85831, 1256, 69, 1266, 57, 1265, 47)
 
 [node name="Portal" parent="." instance=ExtResource("4_g54t4")]
