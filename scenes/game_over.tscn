@@ -24,6 +24,24 @@ texture = ExtResource("7_56v3a")
 [node name="GameOver" type="Node2D"]
 process_mode = 2
 script = ExtResource("1_wqhvx")
+<<<<<<< HEAD
+=======
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.005830113, 0.006650711, 0.004254057, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("2_irg28")
+expand_mode = 1
+>>>>>>> parent of 72fe741 (feat: update for level b1)
 
 [node name="yes_button" type="Button" parent="."]
 process_mode = 2

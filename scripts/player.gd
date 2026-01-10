@@ -14,6 +14,10 @@ signal player_has_died
 @onready var naik_sound: AudioStreamPlayer2D = $NaikSfx
 @onready var turun_sound: AudioStreamPlayer2D = $TurunSfx
 @onready var die_sound: AudioStreamPlayer2D = $DieSfx
+<<<<<<< HEAD
+=======
+@onready var shard_counter_label = $ShardCounter
+>>>>>>> parent of 72fe741 (feat: update for level b1)
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump"): # Tekan Spasi untuk cek
@@ -101,15 +105,22 @@ func die() -> void:
 	die_sound.play()
 	await get_tree().create_timer(0.5).timeout
 	
+<<<<<<< HEAD
 	# Pause game
+=======
+	player_has_died.emit() 
+>>>>>>> parent of 72fe741 (feat: update for level b1)
 	get_tree().paused = true
 	player_has_died.emit() 
 
 # Handle game over when character exits screen
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	die()
 =======
+=======
+>>>>>>> parent of 72fe741 (feat: update for level b1)
 	# Cek juga di sini agar tidak mati saat disedot keluar layar
 	if not is_entering_portal:
 		die()
