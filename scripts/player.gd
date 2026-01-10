@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-const SPEED = 200.0
-const GRAVITY_SCALE = 5
+const SPEED = 300.0
+const GRAVITY_SCALE = 2.5 
 
 var gravity_direction = 1
 var alive = true
@@ -13,7 +13,6 @@ signal player_has_died
 @onready var naik_sound: AudioStreamPlayer2D = $NaikSfx
 @onready var turun_sound: AudioStreamPlayer2D = $TurunSfx
 @onready var die_sound: AudioStreamPlayer2D = $DieSfx
-@onready var shard_counter_label = $ShardCounter
 
 func _ready() -> void:
 	# SOLUSI 1: Reset Engine dan State setiap kali player lahir kembali
@@ -28,6 +27,7 @@ func _physics_process(delta: float) -> void:
 	# SOLUSI 2: Gunakan delta secara konsisten pada gravitasi
 	velocity += get_gravity() * gravity_direction * GRAVITY_SCALE * delta
 
+	# Character die logic
 	if not alive:
 		# Saat mati, biarkan sisa momentum berjalan tanpa input
 		move_and_slide()
@@ -63,11 +63,13 @@ func _physics_process(delta: float) -> void:
 	# move_and_slide() di Godot 4 sudah otomatis menangani delta untuk posisi
 	move_and_slide()
 
+# Reversing the gravity
 func flip_gravity():
 	gravity_direction *= -1
 	up_direction = Vector2(0, -1) * gravity_direction
 	velocity.y = 0
 
+# Update animation after reversing gravity.
 func update_animation(direction):
 	if not is_on_floor():
 		animated_sprite.play("jump")
@@ -100,33 +102,17 @@ func die() -> void:
 	var knockback_dir_y = -1 * gravity_direction 
 	velocity = Vector2(-200, 400 * knockback_dir_y)
 	
+	# Send signal to Main if the player is dead
 	die_sound.play()
 	
 	# Gunakan timer non-paused agar tetap berjalan meski game nanti di-pause
 	var timer = get_tree().create_timer(0.5)
 	await timer.timeout
 	
-	player_has_died.emit() 
+	# Pause game
 	get_tree().paused = true
+	player_has_died.emit() 
 
+# Handle game over when character exits screen
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	if not is_entering_portal:
-		die()
-
-func enter_portal_state():
-	is_entering_portal = true
-	$CollisionShape2D.set_deferred("disabled", true)
-
-func show_shard_number(number: int):
-	if not shard_counter_label:
-		return
-
-	shard_counter_label.text = str(number)
-	shard_counter_label.position = Vector2(-150, -50) 
-	shard_counter_label.modulate.a = 1.0 
-	shard_counter_label.show()
-	
-	var tween = create_tween()
-	tween.set_parallel(true) 
-	tween.tween_property(shard_counter_label, "position", shard_counter_label.position + Vector2(0, -30), 1.0).set_trans(Tween.TRANS_SINE)
-	tween.tween_property(shard_counter_label, "modulate:a", 0.0, 1.0)
+	die()

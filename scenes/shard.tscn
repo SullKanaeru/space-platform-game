@@ -60,13 +60,10 @@ animations = [{
 }]
 
 [node name="Shard" type="Area2D"]
-scale = Vector2(0.3, 0.3)
-script = ExtResource("1_rr10k")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0n1k2")
-autoplay = "default"
-frame_progress = 0.49914628
+frame_progress = 0.10976688
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-4, -89, -32, -79, -38, -79, -40.88507, -73.550446, -42, -70, -49, -58, -46, -28, -40, -10, -28, -1, -31, 6, -27, 14, -20, 15, -15, 19, -14, 29, -13, 41, -18, 42, -18, 48, -21, 65, -29, 72, -27, 76, -21, 72, -11, 82, -11, 87, 2, 97, 27, 89, 25, 60, 34, 46, 37, 19, 37, 11, 45, 3, 58, -29, 64, -44, 54, -72, 23, -82)
